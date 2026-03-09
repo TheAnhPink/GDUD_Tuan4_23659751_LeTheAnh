@@ -10,15 +10,27 @@ function Bai2() {
                 const res = await fetch("https://jsonplaceholder.typicode.com/users")
                 const data = await res.json()
                 setData(data)
+                // setTimeout(()=>{
+                //     setData(data)
+                //     setLoading(false)
+                // },1500)
 
             } catch (error) {
                 setError(error.message)
-            }finally{
+                setLoading(false)
+            }
+            
+            finally{
                 setLoading(false)
             }
         }
-        getData();
+        setTimeout(()=>{
+            getData();
+        },3000)
+        
     }, [])
+        if(loading) return <h3>Loading..</h3>
+        if(error !=null) return <h3>{error}</h3>
 
     return (
         <div>
